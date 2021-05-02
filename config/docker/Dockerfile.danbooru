@@ -22,6 +22,7 @@ RUN \
 
 FROM base AS development
 ARG NODE_VERSION
+ARG SOURCE_COMMIT
 
 RUN \
   apt-get update && \
@@ -46,6 +47,7 @@ COPY .yarn package.json yarn.lock ./
 RUN yarn install
 
 COPY . .
+RUN echo "$SOURCE_COMMIT" > REVISION
 
 
 
